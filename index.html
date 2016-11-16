@@ -11,7 +11,7 @@
     <div class="container">
       <div class="col-sm-12 col-md-7">
         <h3>Enter the Meal Details</h3>
-        <form class="form-inline tipForm" novalidate>
+        <form class="form-inline tipForm" name="tipForm" novalidate>
           <div class="form-group">
             <label>Base Meal Price: $ </label>
             <input type="text" ng-model="vm.mealPrice">
@@ -26,7 +26,7 @@
           </div>
           <div class="btn-group">
             <button type="button" class="btn btn-secondary" ng-click="vm.getMealTotal(); vm.getEarningsInfo()">Submit</button>
-            <button type="button" class="btn btn-secondary">Cancel</button>
+            <button type="button" class="btn btn-secondary" ng-click="vm.cancelTipForm()">Cancel</button>
         </div>
         </form>
       </div>
@@ -44,8 +44,12 @@
           <p>Average Tip Per Meal {{vm.avgTipPerMeal | currency: $}}</p>
         </div>
       </div>
+      <div class="col-sm-12">
+        <button type="button" class="btn btn-secondary" ng-click="vm.reset()">Reset</button>
+      </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.5.8/angular-messages.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
