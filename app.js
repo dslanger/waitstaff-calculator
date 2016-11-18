@@ -22,6 +22,12 @@ angular.module('waitstaffApp', ['ngMessages'])
       vm.avgTipPerMeal = vm.tipTotal / vm.mealCount;
     };
 
+    vm.getTotalAndTip = function() {
+      vm.getMealTotal();
+      vm.getEarningsInfo();
+    };
+
+
     vm.cancelTipForm = function() {
       vm.mealPrice = '';
       vm.taxRate = '';
