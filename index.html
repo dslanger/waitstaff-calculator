@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="waitstaffApp">
+<html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0">
@@ -7,49 +7,25 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
   </head>
-  <body ng-controller="mainController as vm" class="wait-staff-app">
+  <body ng-app="waitstaffApp" class="wait-staff-app">
     <div class="container">
-      <div class="col-sm-12 col-md-7">
-        <h3>Enter the Meal Details</h3>
-        <form class="form-inline tipForm" name="tipForm" novalidate>
-          <div class="form-group">
-            <label>Base Meal Price: $ </label>
-            <input type="text" ng-model="vm.mealPrice">
-          </div>
-          <div class="form-group">
-            <label>Tax Rate: % </label>
-            <input type="text" ng-model="vm.taxRate">
-          </div>
-          <div class="form-group">
-            <label>Tip Percentage: % </label>
-            <input type="text" ng-model="vm.tipPercentage">
-          </div>
-          <div class="btn-group">
-            <button type="button" class="btn btn-secondary" ng-click="vm.getTotalAndTip()">Submit</button>
-            <button type="button" class="btn btn-secondary" ng-click="vm.cancelTipForm()">Cancel</button>
-        </div>
-        </form>
-      </div>
-      <div class="col-sm-12 col-md-5">
-        <div class="col-sm-12">
-          <h3>Customer Charges</h3>
-          <p>Subtotal {{vm.subtotal | currency:$ }}</p>
-          <p>Tip {{vm.tip | currency:$ }}</p>
-          <p>Total {{vm.total | currency:$ }}</p>
-        </div>
-        <div class="col-sm-12">
-          <h3>My Earnings Info</h3>
-          <p>Tip Total {{vm.tipTotal | currency: $}}</p>
-          <p>Meal Count {{vm.mealCount}}</p>
-          <p>Average Tip Per Meal {{vm.avgTipPerMeal | currency: $}}</p>
+      <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1 text-center">
+        <h1>Waitstaff Calculator</h1>
+        <ul class="nav nav-pills">
+          <li><a ng-href="#/">Home</a></li>
+          <li><a ng-href="#/new-meal">New Meal</a></li>
+          <li><a ng-href="#/my-earnings">My Earnings</a></li>
+        </ul>
         </div>
       </div>
-      <div class="col-sm-12">
-        <button type="button" class="btn btn-secondary" ng-click="vm.reset()">Reset</button>
-      </div>
+
+      <div ng-view></div>
+
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.5.8/angular-messages.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-messages.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

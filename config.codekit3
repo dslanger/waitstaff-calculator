@@ -27,10 +27,28 @@
 		"sC": 1,
 		"tS": 0
 		},
+	"\/home.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/home.html",
+		"oF": 0
+		},
 	"\/index.html": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/index.html",
+		"oF": 0
+		},
+	"\/my-earnings.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/my-earnings.html",
+		"oF": 0
+		},
+	"\/new-meal.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/new-meal.html",
 		"oF": 0
 		},
 	"\/style-min.css": {
@@ -52,18 +70,6 @@
 		"oAP": "\/style-min.css",
 		"oF": 0,
 		"oS": 0
-		},
-	"\/Untitled-2.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/Untitled-2.php",
-		"oF": 0
-		},
-	"\/Untitled.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/Untitled.php",
-		"oF": 0
 		}
 	},
 "hooks": [

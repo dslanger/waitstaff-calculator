@@ -1,0 +1,10 @@
+<div class="col-sm-12">
+  <h3>My Earnings Info</h3>
+  <p>Tip Total {{vm.tipTotal | currency: $}}</p>
+  <p>Meal Count {{vm.mealCount}}</p>
+  <p>Average Tip Per Meal {{vm.avgTipPerMeal | currency: $}}</p>
+</div>
+
+<div class="col-sm-12">
+  <button type="button" class="btn btn-secondary" ng-click="vm.reset()">Reset</button>
+</div>
