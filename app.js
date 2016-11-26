@@ -1,47 +1,50 @@
 angular.module('waitstaffApp', ['ngMessages', 'ngRoute'])
-.factory('TipsAndTotals', function() {
-    var vm = this;
-    // initial values
-    vm.subtotal = 0;
-    vm.tip = 0;
-    vm.total = 0;
-    vm.tipTotal = 0;
-    vm.mealCount = 0;
-    vm.avgTipPerMeal = 0;
+.factory('calculateTotals', function() {
+      return {
+        // initial values
+        this.subtotal = 0,
+        this.tip = 0,
+        this.total = 0,
+        this.tipTotal = 0,
+        this.mealCount = 0,
+        this.avgTipPerMeal = 0,
 
-    vm.getMealTotal = function() {
-      vm.subtotal = vm.mealPrice * (1 + vm.taxRate / 100);
-      vm.tip = vm.mealPrice * (vm.tipPercentage / 100);
-      vm.total = vm.subtotal + vm.tip;
-    };
+        this.getMealTotal = function() {
+          subtotal = mealPrice * (1 + taxRate / 100);
+          tip = mealPrice * (tipPercentage / 100);
+          total = subtotal + tip;
+        },
 
-    vm.getEarningsInfo = function() {
-      vm.tipTotal += vm.tip;
-      vm.mealCount += 1;
-      vm.avgTipPerMeal = vm.tipTotal / vm.mealCount;
-    };
+        this.getEarningsInfo = function() {
+          tipTotal += tip;
+          mealCount += 1;
+          avgTipPerMeal = tipTotal / mealCount;
+        },
 
-    vm.getTotalAndTip = function() {
-      vm.getMealTotal();
-      vm.getEarningsInfo();
-    };
+        this.getTotalAndTip = function() {
+          this.getMealTotal();
+          this.getEarningsInfo();
+        },
 
-    vm.cancelTipForm = function() {
-      vm.mealPrice = '';
-      vm.taxRate = '';
-      vm.tipPercentage = '';
-      tipForm.$setPristine();
-    };
+        this.cancelTipForm = function() {
+          mealPrice = '';
+          taxRate = '';
+          tipPercentage = '';
+          tipForm.$setPristine();
+        },
 
-    vm.reset = function() {
-      vm.subtotal = 0;
-      vm.tip = 0;
-      vm.total = 0;
-      vm.tipTotal = 0;
-      vm.mealCount = 0;
-      vm.avgTipPerMeal = 0;
-    };
-})
+        this.reset = function() {
+          subtotal = 0;
+          tip = 0;
+          total = 0;
+          tipTotal = 0;
+          mealCount = 0;
+          avgTipPerMeal = 0;
+        }
+
+      };
+
+  })
 .config(['$routeProvider', function($routeProvider){
       $routeProvider.when('/', {
           templateUrl: 'home.html',
@@ -63,10 +66,10 @@ angular.module('waitstaffApp', ['ngMessages', 'ngRoute'])
       })
       .otherwise('/error');
   }])
-  .controller('HomeCtrl', ['TipsAndTotals', function() {
+  .controller('HomeCtrl', ['calculateTotals', function() {
       var vm = this;
   }])
-  .controller('EarningsCtrl', ['TipsAndTotals', function() {
+  .controller('EarningsCtrl', ['calculateTotals', function() {
     var vm = this;
 
   }])
