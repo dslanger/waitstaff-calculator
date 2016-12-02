@@ -48,7 +48,7 @@ angular.module('waitstaffApp', ['ngMessages', 'ngRoute'])
       }
     };
   }])
-  .controller('HomeCtrl', [function() {
+  .controller('HomeCtrl', [function(calculator) {
       var vm = this;
 
   }])
