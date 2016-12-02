@@ -1,50 +1,4 @@
 angular.module('waitstaffApp', ['ngMessages', 'ngRoute'])
-.factory('calculateTotals', function() {
-      return {
-        // initial values
-        this.subtotal = 0,
-        this.tip = 0,
-        this.total = 0,
-        this.tipTotal = 0,
-        this.mealCount = 0,
-        this.avgTipPerMeal = 0,
-
-        this.getMealTotal = function() {
-          subtotal = mealPrice * (1 + taxRate / 100);
-          tip = mealPrice * (tipPercentage / 100);
-          total = subtotal + tip;
-        },
-
-        this.getEarningsInfo = function() {
-          tipTotal += tip;
-          mealCount += 1;
-          avgTipPerMeal = tipTotal / mealCount;
-        },
-
-        this.getTotalAndTip = function() {
-          this.getMealTotal();
-          this.getEarningsInfo();
-        },
-
-        this.cancelTipForm = function() {
-          mealPrice = '';
-          taxRate = '';
-          tipPercentage = '';
-          tipForm.$setPristine();
-        },
-
-        this.reset = function() {
-          subtotal = 0;
-          tip = 0;
-          total = 0;
-          tipTotal = 0;
-          mealCount = 0;
-          avgTipPerMeal = 0;
-        }
-
-      };
-
-  })
 .config(['$routeProvider', function($routeProvider){
       $routeProvider.when('/', {
           templateUrl: 'home.html',
@@ -58,7 +12,7 @@ angular.module('waitstaffApp', ['ngMessages', 'ngRoute'])
       })
       .when('/new-meal', {
           templateUrl : 'new-meal.html',
-          controller : 'MealCtrl',
+          controller : 'newMealCtrl',
           controllerAs: 'vm',
       })
       .when('/error', {
@@ -66,14 +20,48 @@ angular.module('waitstaffApp', ['ngMessages', 'ngRoute'])
       })
       .otherwise('/error');
   }])
-  .controller('HomeCtrl', ['calculateTotals', function() {
-      var vm = this;
+  .factory('calculator', [function() {
+    var mealPrice, taxRate, tipPercentage, getMealTotal, getEarningsInfo, getTotalAndTip, cancelTipForm, subtotal, tip, total, tipTotal, mealCount, avgTipPerMeal;
+    return {
+      mealPrice: 0,
+      taxRate: 0,
+      tipPercentage: 0,
+      getMealTotal: function() {
+        subtotal = mealPrice * (1 + taxRate / 100);
+        tip = mealPrice * (tipPercentage / 100);
+        total = subtotal + tip;
+      },
+      getEarningsInfo: function() {
+        tipTotal += tip;
+        mealCount += 1;
+        avgTipPerMeal = tipTotal / mealCount;
+      },
+      getTotalAndTip: function() {
+        calculator.getMealTotal();
+        calculator.getEarningsInfo();
+      },
+      cancelTipForm: function(form) {
+        mealPrice = '';
+        taxRate = '';
+        tipPercentage = '';
+        form.$setPristine();
+      }
+    };
   }])
-  .controller('EarningsCtrl', ['calculateTotals', function() {
-    var vm = this;
+  .controller('HomeCtrl', [function() {
+      var vm = this;
 
   }])
-  .controller('MealCtrl', [function() {
-    var vm = this;
+  .controller('newMealCtrl', ['calculator', function(calculator) {
+      var vm = this;
+      vm.mealPrice = calculator.mealPrice;
+      vm.taxRate = calculator.taxRate;
+      vm.tipPercentage = calculator.tipPercentage;
+      vm.getTotalAndTip = calculator.getTotalAndTip();
+      vm.cancelTipForm = calculator.cancelTipForm();
+  }])
+  .controller('EarningsCtrl', ['calculator', function(calculator) {
+      var vm = this;
+
 
   }]);

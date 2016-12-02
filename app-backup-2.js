@@ -20,38 +20,6 @@ angular.module('waitstaffApp', ['ngMessages', 'ngRoute'])
       })
       .otherwise('/error');
   }])
-  .factory('wsCalcService', function() {
-    var values = {
-      subtotal: 0,
-      tip: 0,
-      total: 0,
-      tipTotal: 0,
-      mealCount: 0,
-      avgTipPerMeal: 0
-    };
-    return {
-      getMealTotal: function() {
-        subtotal = mealPrice * (1 + taxRate / 100);
-        tip = mealPrice * (tipPercentage / 100);
-        total = subtotal + tip;
-      },
-      getEarningsInfo: function() {
-       tipTotal += tip;
-       mealCount += 1;
-       avgTipPerMeal = tipTotal / mealCount;
-      },
-      getTotalAndTip: function() {
-        getMealTotal();
-        getEarningsInfo();
-      },
-      cancelTipForm: function() {
-        mealPrice = '';
-        taxRate = '';
-        tipPercentage = '';
-        tipForm.$setPristine();
-      }
-    }
-  });
   .controller('HomeCtrl', [function() {
       var vm = this;
   }])
