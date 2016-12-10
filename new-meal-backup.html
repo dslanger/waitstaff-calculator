@@ -3,25 +3,25 @@
     <form class="form-inline tipForm" name="tipForm" novalidate>
       <div class="form-group">
         <label>Base Meal Price: $ </label>
-        <input type="text" ng-model="mealPrice">
+        <input type="text" ng-model="vm.mealPrice">
       </div>
       <div class="form-group">
         <label>Tax Rate: % </label>
-        <input type="text" ng-model="taxRate">
+        <input type="text" ng-model="vm.taxRate">
       </div>
       <div class="form-group">
         <label>Tip Percentage: % </label>
-        <input type="text" ng-model="tipPercentage">
+        <input type="text" ng-model="vm.tipPercentage">
       </div>
       <div class="btn-group">
-        <button type="button" class="btn btn-secondary" ng-click="getMealTotal(); getEarningsInfo()">Submit</button>
-        <button type="button" class="btn btn-secondary" ng-click="cancelTipForm(tipForm)">Cancel</button>
+        <button type="button" class="btn btn-secondary" ng-click="vm.getTotalAndTip()">Submit</button>
+        <button type="button" class="btn btn-secondary" ng-click="vm.cancelTipForm(tipForm)">Cancel</button>
     </div>
     </form>
   </div>
   <div class="col-sm-12">
     <h3>Customer Charges</h3>
-    <p>Subtotal {{subtotal | currency:$ }}</p>
-    <p>Tip {{tip | currency:$ }}</p>
-    <p>Total {{total | currency:$ }}</p>
+    <p>Subtotal {{vm.subtotal | currency:$ }}</p>
+    <p>Tip {{vm.tip | currency:$ }}</p>
+    <p>Total {{vm.total | currency:$ }}</p>
   </div>

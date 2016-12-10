@@ -2,15 +2,18 @@ angular.module('waitstaffApp', ['ngMessages', 'ngRoute'])
 .config(['$routeProvider', function($routeProvider){
       $routeProvider.when('/', {
           templateUrl: 'home.html',
-          controller : 'HomeCtrl'
+          controller : 'HomeCtrl',
+          controllerAs: 'vm'
       })
       .when('/my-earnings', {
           templateUrl : 'my-earnings.html',
-          controller : 'EarningsCtrl'
+          controller : 'EarningsCtrl',
+          controllerAs: 'vm',
       })
       .when('/new-meal', {
           templateUrl : 'new-meal.html',
-          controller : 'NewMealCtrl'
+          controller : 'NewMealCtrl',
+          controllerAs: 'vm',
       })
       .when('/error', {
         template : '<p>Error Page Not Found</p>'
@@ -31,10 +34,9 @@ angular.module('waitstaffApp', ['ngMessages', 'ngRoute'])
       $scope.tip = $scope.mealPrice * ($scope.tipPercentage / 100);
       $scope.total = $scope.subtotal + $scope.tip;
     };
-    $scope.getEarningsInfo = function() {
-      $scope.tipTotal += $scope.tip;
-      $scope.mealCount += 1;
-      $scope.avgTipPerMeal = $scope.tipTotal / $scope.mealCount;
+    $scope.getTotalAndTip = function() {
+      $scope.getMealTotal();
+      $scope.getEarningsInfo();
     };
     $scope.cancelTipForm = function() {
       $scope.mealPrice = '';
@@ -43,15 +45,13 @@ angular.module('waitstaffApp', ['ngMessages', 'ngRoute'])
       tipForm.$setPristine();
     };
 
-
-  })
+  }])
   .controller('EarningsCtrl', function($scope) {
-    $scope.getEarningsInfo = function() {
-      $scope.tipTotal += $scope.tip;
-      $scope.mealCount += 1;
-      $scope.avgTipPerMeal = $scope.tipTotal / $scope.mealCount;
-    };
-
+    // $scope.getEarningsInfo = function() {
+    //   $scope.tipTotal += $scope.tip;
+    //   $scope.mealCount += 1;
+    //   $scope.avgTipPerMeal = $scope.tipTotal / $scope.mealCount;
+    // };
     $scope.reset = function() {
       $scope.subtotal = 0;
       $scope.tip = 0;
@@ -62,8 +62,8 @@ angular.module('waitstaffApp', ['ngMessages', 'ngRoute'])
     };
 
 
-  })
+  }])
   .controller('HomeCtrl', function($scope) {
 
 
-  });
+  }]);
